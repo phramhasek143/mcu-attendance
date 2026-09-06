@@ -2,35 +2,62 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Lock, User, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
+import { GraduationCap, Lock, User, AlertCircle, Loader2, ArrowLeft, Sparkles, CheckCircle2 } from "lucide-react";
+import { mockUsers } from "@/lib/mock-data";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleQuickLogin = (u: string, p: string, redirectUrl: string) => {
+    setUsername(u);
+    setPassword(p);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push(redirectUrl);
+    }, 400);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMessage(null);
 
-    // Mock/Dev validation
-    if (!username || !password) {
+    if (!username.trim() || !password.trim()) {
       setErrorMessage("กรุณากรอกชื่อผู้ใช้และรหัสผ่าน");
       setIsLoading(false);
       return;
     }
 
+    const inputLower = username.trim().toLowerCase();
+
     setTimeout(() => {
       setIsLoading(false);
-      // ในขั้นตอนต่อไปของ Sprint 1 จะต่อเข้ากับ NextAuth signIn
-      setErrorMessage("ระบบเตรียมการเชื่อมต่อฐานข้อมูลสำหรับ Sprint 1.4 (โปรดรัน Prisma Migrate ในขั้นตอนถัดไป)");
-    }, 800);
+
+      // Routing ตามบทบาทที่ระบุ
+      if (inputLower.includes("admin")) {
+        router.push("/registrar/eligibility");
+      } else if (
+        inputLower.includes("boonlert") ||
+        inputLower.includes("prasit") ||
+        inputLower.includes("teacher") ||
+        inputLower.includes("instructor")
+      ) {
+        router.push("/instructor/courses");
+      } else {
+        // ค่าเริ่มต้นเป็นนิสิต (รหัสนิสิต เช่น 6601201001 หรือชื่อนิสิต)
+        router.push("/student/portal");
+      }
+    }, 600);
   };
 
   return (
@@ -82,7 +109,7 @@ export default function LoginPage() {
                 </label>
                 <Input
                   type="text"
-                  placeholder="เช่น 6601201001 หรือ somchai@mcu.ac.th"
+                  placeholder="เช่น 6601201001 หรือ boonlert@mcu.ac.th"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   disabled={isLoading}
@@ -96,9 +123,9 @@ export default function LoginPage() {
                     <Lock className="h-4 w-4 text-slate-400" />
                     รหัสผ่าน
                   </label>
-                  <a href="#" className="text-xs text-amber-700 hover:underline">
-                    ลืมรหัสผ่าน?
-                  </a>
+                  <span className="text-[11px] text-slate-400">
+                    (รหัสทดสอบ: อะไรก็ได้ 6 ตัวอักษรขึ้นไป)
+                  </span>
                 </div>
                 <Input
                   type="password"
@@ -125,9 +152,60 @@ export default function LoginPage() {
                 )}
               </Button>
             </form>
+
+            {/* Quick Login Shortcut Buttons */}
+            <div className="mt-6 border-t border-slate-100 pt-4">
+              <p className="text-xs font-semibold text-slate-500 mb-2.5 flex items-center gap-1">
+                <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+                คลิกปุ่มด้านล่างเพื่อเข้าสู่ระบบทดสอบทันที (Quick Login):
+              </p>
+              <div className="grid grid-cols-1 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin("6601201001", "123456", "/student/portal")}
+                  className="w-full flex items-center justify-between rounded-xl border border-amber-200 bg-amber-50/50 p-2.5 text-left text-xs hover:bg-amber-100/60 transition-colors"
+                >
+                  <div>
+                    <span className="font-bold text-amber-950">1. เข้าสู่ระบบเป็น พระนิสิต</span>
+                    <p className="text-[11px] text-slate-500">พระมหาธนภูมิ ฐิตธมฺโม (6601201001)</p>
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-white border-amber-300">
+                    Student
+                  </Badge>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin("boonlert", "123456", "/instructor/courses")}
+                  className="w-full flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 text-left text-xs hover:bg-slate-100 transition-colors"
+                >
+                  <div>
+                    <span className="font-bold text-slate-900">2. เข้าสู่ระบบเป็น อาจารย์ผู้สอน</span>
+                    <p className="text-[11px] text-slate-500">พระมหาบุญเลิศ กิตฺติปญฺโญ (boonlert)</p>
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-white border-slate-300">
+                    Instructor
+                  </Badge>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin("admin", "123456", "/registrar/eligibility")}
+                  className="w-full flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 text-left text-xs hover:bg-slate-100 transition-colors"
+                >
+                  <div>
+                    <span className="font-bold text-slate-900">3. เข้าสู่ระบบเป็น ทะเบียน / Admin</span>
+                    <p className="text-[11px] text-slate-500">นายสมชาย แอดมิน (admin)</p>
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-white border-slate-300">
+                    Registrar
+                  </Badge>
+                </button>
+              </div>
+            </div>
           </CardContent>
           <CardFooter className="flex flex-col border-t border-slate-100 bg-slate-50/50 p-4 text-center text-xs text-slate-500 rounded-b-2xl">
-            <span>มีปัญหาการใช้งาน ติดต่อศูนย์คอมพิวเตอร์ มจร วังน้อย โทร. 035-248-000</span>
+            <span>ศูนย์คอมพิวเตอร์และสำนักทะเบียนและวัดผล มจร วังน้อย</span>
           </CardFooter>
         </Card>
       </div>
