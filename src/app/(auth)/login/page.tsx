@@ -73,10 +73,10 @@ export default function LoginPage() {
           </div>
         </div>
         <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          เข้าสู่ระบบเช็คชื่อ มจร
+          เข้าสู่ระบบ MCU-SAMS
         </h2>
-        <p className="mt-2 text-center text-sm text-slate-600">
-          สำหรับพระภิกษุ สามเณร นิสิตคฤหัสถ์ และคณาจารย์
+        <p className="mt-2 text-center text-xs text-slate-600 sm:text-sm">
+          ระบบบริหารจัดการการเช็คชื่อนิสิต มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย
         </p>
       </div>
 

@@ -150,7 +150,7 @@ export default function ProjectorPresentPage() {
           <ShieldCheck className="h-4 w-4 text-emerald-500" />
           <span>ระบบป้องกัน Replay Attack และตรวจสอบอ้างอิงเวลา Server NTP Clock</span>
         </div>
-        <span>มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย • MCU Smart Attendance</span>
+        <span>มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย • MCU-SAMS</span>
       </footer>
     </div>
   );

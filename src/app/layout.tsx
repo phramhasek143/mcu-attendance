@@ -10,8 +10,8 @@ const sarabun = Sarabun({
 });
 
 export const metadata: Metadata = {
-  title: "ระบบเช็คชื่อ มจร - MCU Smart Attendance System",
-  description: "ระบบบริหารจัดการเวลาเรียนและกิจกรรมวัตรปฏิบัติ มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย",
+  title: "MCU-SAMS | ระบบบริหารจัดการการเช็คชื่อนิสิต มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย",
+  description: "MCU-SAMS (MCU Student Attendance Management System) ระบบบริหารจัดการการเช็คชื่อนิสิต มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย",
 };
 
 export default function RootLayout({

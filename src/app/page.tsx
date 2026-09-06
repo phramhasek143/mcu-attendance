@@ -24,10 +24,10 @@ export default function HomePage() {
             </div>
             <div>
               <span className="text-base font-bold text-slate-900 sm:text-lg">
-                ระบบเช็คชื่อ มจร
+                MCU-SAMS
               </span>
               <span className="hidden text-xs text-amber-800/80 sm:inline sm:ml-2">
-                MCU Smart Attendance System
+                MCU Student Attendance Management System
               </span>
             </div>
           </div>
@@ -51,16 +51,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-100/60 px-4 py-1.5 text-xs font-semibold text-amber-900 shadow-sm">
             <CalendarCheck className="h-4 w-4 text-amber-700" />
-            ระบบบริหารจัดการเวลาเรียนและกิจกรรมวัตรปฏิบัติแบบรวมศูนย์
+            MCU-SAMS • ระบบบริหารจัดการการเช็คชื่อนิสิต มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย
           </div>
           <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:leading-tight">
-            ระบบเช็คชื่ออัจฉริยะ <br />
+            ระบบบริหารจัดการการเช็คชื่อนิสิต <br />
             <span className="bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 bg-clip-text text-transparent">
-              มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย
+              มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย (MCU-SAMS)
             </span>
           </h1>
           <p className="mt-4 text-base text-slate-600 sm:text-lg">
-            บันทึกเวลาเรียนและกิจกรรมสงฆ์อย่างถูกต้อง แม่นยำ โปร่งใส ด้วย Dynamic QR Code
+            MCU Student Attendance Management System: บันทึกเวลาเรียนและกิจกรรมวัตรปฏิบัติอย่างถูกต้อง แม่นยำ โปร่งใส ด้วย Dynamic QR Code
             และโหมดตรวจเช็คสำรอง สอดคล้องกับระเบียบมหาวิทยาลัยและเกณฑ์ อว. 80%
           </p>
 
@@ -174,7 +174,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
         <p>© 2569 มหาวิทยาลัยมหาจุฬาลงกรณราชวิทยาลัย (มจร) • ศูนย์คอมพิวเตอร์และสำนักทะเบียนและวัดผล</p>
-        <p className="mt-1">MCU Smart Attendance System • Production MVP v1.0.0</p>
+        <p className="mt-1 font-medium">MCU-SAMS (MCU Student Attendance Management System) • Production MVP v1.0.0</p>
       </footer>
     </div>
   );

@@ -54,10 +54,10 @@ export function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-bold text-slate-900 leading-tight">
-                ระบบเช็คชื่อ มจร
+                MCU-SAMS
               </span>
               <span className="text-[10px] text-amber-800 font-medium">
-                MCU Attendance
+                ระบบเช็คชื่อนิสิต มจร
               </span>
             </div>
           </Link>
